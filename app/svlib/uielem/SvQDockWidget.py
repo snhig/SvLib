@@ -1,7 +1,6 @@
 from PySide6.QtCore import Qt
 from PySide6.QtWidgets import QWidget, QDockWidget
-from svlib.uielem.SvQWidget import SvQWidget
-from svlib.abstract.SvError import SvError
+from .SvQWidget import SvQWidget
 
 class SvDockWidget(QDockWidget):
     """SvDockWidget is a QDockWidget with some predefined parameters"""

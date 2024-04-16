@@ -1,15 +1,15 @@
 from setuptools import find_packages, setup
 
-with open("svlib/Readme.md", "r") as fh:
+with open("app/Readme.md", "r") as fh:
     long_description = fh.read()
     
     
 setup (
-    name="SvLib",
+    name="svlib",
     version="0.0.10",
-    description="A simple library for motors, UI elements, and base classes",
-    package_dir={"": "svlib"},
-    packages=find_packages(where="svlib"),
+    description="A simple library containing abstract base classes for motors, and some pre-defined UI elements",
+    package_dir={"": "app"},
+    packages=find_packages(where="app"),
     long_description=long_description,
     long_description_content_type="text/markdown",
     url="https://github.com/snhig/SvLib",

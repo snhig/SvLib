@@ -1,5 +1,5 @@
 from abc import ABC, abstractmethod
-from svlib.abstract.SvError import SvError
+from .SvError import SvError
 from numpy import ndarray
 import cv2
 class SvCamera(ABC):

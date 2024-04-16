@@ -3,7 +3,7 @@ from PySide6.QtGui import QAction, QActionGroup, QMouseEvent
 from PySide6.QtWidgets import QApplication, QCheckBox, QFileDialog, QHBoxLayout,QMenu, QWidget, QVBoxLayout, QSlider, QLabel, QToolBar, QSplitter, QTabWidget, QDoubleSpinBox, QPushButton, QGridLayout, QSpinBox, QFormLayout, QProgressBar, QGraphicsSceneContextMenuEvent
 import pyqtgraph as pg
 import cv2
-
+# from SvJoyStick import JoystickButton
 class SvROI(pg.ROI):
     regionChangedSignal = Signal(tuple, tuple) # (origin[tuple], size[tuple])
     def __init__(self, name:str, parent=None, pos=[0,0], size=[0,0], pen=pg.mkPen('r', width=2), **args):
@@ -42,6 +42,7 @@ class SvImageCanvas(QWidget):
         self.graphics_view.addItem(self.vb)
         self.imv = pg.ImageItem()
         self.vb.addItem(self.imv)
+        # self.lyout.addWidget(JoystickButton())
         
         
         
@@ -254,6 +255,7 @@ if __name__ == '__main__':
     import sys
     from PySide6.QtWidgets import QApplication
     app = QApplication(sys.argv)
+    app.setStyle('fusion')
     wid = QWidget()
     lay = QHBoxLayout()
     wid.setLayout(lay)
