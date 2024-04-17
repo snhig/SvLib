@@ -1,6 +1,6 @@
 from abc import ABC, abstractmethod
 from .SvError import SvError
-class SvMotor(ABC):
+class SvAbstractMotor(ABC):
     """
     Abstract base class for a servo motor.
     

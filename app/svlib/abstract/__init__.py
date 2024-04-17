@@ -1,3 +1,3 @@
 from .SvError import SvError
-from .SvCamera import SvCamera
-from .SvMotor import SvMotor
+from .SvCamera import SvAbstractCamera
+from .SvMotor import SvAbstractMotor

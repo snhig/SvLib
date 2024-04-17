@@ -2,7 +2,7 @@ from abc import ABC, abstractmethod
 from .SvError import SvError
 from numpy import ndarray
 import cv2
-class SvCamera(ABC):
+class SvAbstractCamera(ABC):
     """
     Abstract base class for a microscope camera.
     
