@@ -94,5 +94,16 @@ class SvAbstractMotor(ABC):
         return SvError("Not implemented", None)
     
     
-    
+    @abstractmethod
+    def set_limits(self, min:float, max:float)-> SvError | None:
+        """
+        Sets the motor limits to prevent moving out of range.
+        """
+        return SvError("Not implemented", None)
 
+    @abstractmethod
+    def get_limits(self)-> SvError | tuple:
+        """
+        Gets the motor limits.
+        """
+        return SvError("Not implemented", None)
