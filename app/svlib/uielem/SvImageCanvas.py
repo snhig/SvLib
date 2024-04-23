@@ -4,6 +4,7 @@ from PySide6.QtWidgets import QApplication, QCheckBox, QFileDialog, QHBoxLayout,
 import pyqtgraph as pg
 import cv2
 # from SvJoyStick import JoystickButton
+
 class SvROI(pg.ROI):
     regionChangedSignal = Signal(tuple, tuple) # (origin[tuple], size[tuple])
     def __init__(self, name:str, parent=None, pos=[0,0], size=[0,0], pen=pg.mkPen('r', width=2), **args):
@@ -23,6 +24,7 @@ class SvROI(pg.ROI):
 class SvImageCanvas(QWidget):
     """A widget for displaying images with additional functionality such as point-click events and ROI selection."""
     point_clicked = Signal(list) # [xyPoint[list], img_shape[list]] -> [ [int(pos.x()), int(pos.y())], img.shape ]
+    
     def __init__(self, parent=None):
         super().__init__(parent=parent)
         self.click_move_enabled = False
@@ -33,6 +35,11 @@ class SvImageCanvas(QWidget):
         self.last_unprocessed_frame = None
         self.roi_enabled = False
         self.roi_counter = 0
+        self.TYPES = {
+            SvImageCanvas : SvImageCanvas,
+            SvImageCanvasMono : SvImageCanvasMono,
+            SvImageCanvasRGB : SvImageCanvasRGB
+        }
     def _init_gui(self):
         pg.setConfigOption('imageAxisOrder', 'row-major')
         self.lyout = QHBoxLayout()
@@ -109,22 +116,26 @@ class SvImageCanvas(QWidget):
         self.toggle_roi_action = QAction("ROI", self)
         self.toggle_roi_action.setCheckable(True)
         self.toggle_roi_action.setChecked(False)
+        duplicate_action = QAction("Duplicate Image", self)
         
         self.menu_actions = {
             self.view_all_action: self.vb.autoRange,
             self.roi_settings_action: self.bring_roi_settings,
             self.center_roi_action: self.center_roi,
-            self.toggle_roi_action: self.toggle_roi
+            self.toggle_roi_action: self.toggle_roi,
+            duplicate_action: self.duplicate
         }
 
     #     self.imv.view.setBackgroundColor('w')
     
     
     def bring_roi_settings(self):
+        """Slot for the ROI settings action."""
         self.roi_widget.setVisible(True)
         self.roi_widget.setFocus()
         
     def toggle_roi(self):
+        """Slot for the ROI toggle action."""
         if self.roi_counter <= 0 and self.last_unprocessed_frame is not None:
             self.roi.setSize([self.last_unprocessed_frame.shape[1], self.last_unprocessed_frame.shape[0]])
             self.roi_counter += 1
@@ -132,20 +143,30 @@ class SvImageCanvas(QWidget):
         print(f'{self.getArrayRegion(self.last_unprocessed_frame)} ROI')
     
     def update_image(self, img):
+        """Depending on the subclass implementation -> Update the image displayed in the widget."""
         pass
 
     def getArrayRegion(self, external_img):
+        """Get the region of interest slice that is present on the view-box from the input image."""
         tup = self.roi.getArraySlice(external_img, self.imv, returnSlice=False)
         return tup[0]
     
     def histogram_toggle(self, force=None):
+        """If compatible with subclass, toggle the histogram visibility."""
         pass
 
     def center_roi(self):
+        """Center the ROI in the middle of the image."""
         image_shape = self.image_shape
         roi_pos = self.roi.size()
         self.roi.setPos([image_shape[1]/2 - roi_pos[0]//2, image_shape[0]/2-roi_pos[1]//2])
-
+        
+    def duplicate(self):
+        """Duplicate the image in a new window."""
+        new = type(self)()
+        new.update_image(self.last_unprocessed_frame)
+        new.setWindowFlags(Qt.WindowStaysOnTopHint)
+        new.show()
     @Slot()
     def normalize_pressed(self):
         """Slot for the normalize checkbox."""

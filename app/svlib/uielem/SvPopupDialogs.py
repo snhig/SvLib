@@ -53,7 +53,7 @@ class Critical(QMessageBox):
         
         if not block_input:
             self.setWindowModality(Qt.WindowModality.WindowModal)
-        self.exec()
+    
         
 class Information(QMessageBox):
     def __init__(self,parent, message="Info", title="Info", block_input=False):
@@ -67,7 +67,7 @@ class Information(QMessageBox):
         self.open_action.clicked.connect(open_manual)
         if not block_input:
             self.setWindowModality(Qt.WindowModality.WindowModal)
-        self.exec()
+        
 
 class Warning(QMessageBox):
     def __init__(self,parent,  message="Warning", title="Warning", block_input=True):
@@ -87,5 +87,5 @@ class Warning(QMessageBox):
         
         if not block_input:
             self.setWindowModality(Qt.WindowModality.WindowModal)
-        self.exec()
+        
 
