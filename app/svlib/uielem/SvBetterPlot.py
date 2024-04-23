@@ -200,8 +200,8 @@ class SvSimplePlot(QWidget):
             self.add_marker(spos_x, text, moveable=True)
         
 
-if __name__ == "__main__":
-    app = QApplication(sys.argv)
-    window = SimplePlot()
-    window.show()
-    sys.exit(app.exec())
+# if __name__ == "__main__":
+#     app = QApplication(sys.argv)
+#     window = SimplePlot()
+#     window.show()
+#     sys.exit(app.exec())
