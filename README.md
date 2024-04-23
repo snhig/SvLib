@@ -14,6 +14,5 @@ QDockWidget, QWidget, SvImageCanvas ...
 3. From repo root directory run `python .\setup.py bdist_wheel sdist` 
 4. From repo root directory run `pip install .`
 
-## Examples
-
+### [Examples](https://github.com/snhig/SvLib/tree/main/examples/)
 
