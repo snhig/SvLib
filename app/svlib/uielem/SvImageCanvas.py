@@ -247,7 +247,7 @@ class SvImageCanvasRGB(SvImageCanvas):
     point_clicked = Signal(list)
     def __init__(self, parent=None):
         super().__init__(parent=parent)
-        self.hist = pg.HistogramLUTWidget(image=self.imv, levelMode='rgba', orientation='horizontal')
+        self.hist = pg.HistogramLUTWidget(image=self.imv, levelMode='rgba', orientation='vertical')
         self.hist.autoHistogramRange()
         self.hist.setVisible(False)
         self.lyout.addWidget(self.hist)

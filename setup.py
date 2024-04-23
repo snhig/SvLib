@@ -26,7 +26,8 @@ setup (
                       "pyqtgraph >= 0.13.3",
                       "PySide6 >= 6.5.1",
                       "PySide6_Addons >= 6.5.1",
-                      "PySide6_Essentials >= 6.5.1"
+                      "PySide6_Essentials >= 6.5.1",
+                      "nd2 >= 0.10.1", 
                       ],
     python_requires='>=3.10',
    
