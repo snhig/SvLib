@@ -7,7 +7,7 @@ __RESOURCE_HELP_LINK__ = "www.google.com"
 def open_manual():
     QDesktopServices.openUrl(__RESOURCE_HELP_LINK__)
 LAB_SAFETY_TEXT = "\n\nPlease continue to the 'User Manual / Safety Guide' for more information."
-PHONES_TEXT = "\n\nLab Manager: Thomas Masterson (650) 436-8934\nLab Manager Alt.: David Steele (510) 846-3243"
+
 def quit_application():
     QApplication.instance().quit()
 

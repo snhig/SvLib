@@ -33,3 +33,4 @@ class SvND2Canvas(QWidget):
             self.nd2_events = f.events()
             
         self.imv.setImage(self.nd2_array)
+        

@@ -18,7 +18,7 @@ setup (
     license="BSD-3-Clause",
     classifiers=[
         "Programming Language :: Python :: 3",
-        "License :: OSI Approved :: BSD License",
+        "License :: BSD License",
         "Operating System :: OS Independent",
     ],
     install_requires=["numpy >= 1.24.2",
